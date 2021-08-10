@@ -125,4 +125,3 @@ If we can put all of these rule services behind an API gateway, then they could 
 This microservices approach combines the decoupled approach with a consistent experience for applications that would consume multiple rules. In fact, it may be possible to use the same pattern used by the justice.gc.ca website for organizing the endpoints of the various rules. 
 
 The Rules Engine is currently sitting behind an APIM Gateway, which is also managed in Microsoft Azure. The gateway is exposed as an API, and is configured to route requests related to maternity benefits through to this Rules Engine. Consuming applications can call either the API Gateway or this API directly to make use of the functionality. 
-
