@@ -15,6 +15,7 @@ namespace esdc_rules_classes.MaternityBenefits
         [Required]
         [Range(100,2000)]
         public decimal MaxWeeklyAmount { get; set; }
+        
         /// <summary>
         /// Percentage of their average income that an applicant is entitled to 
         /// </summary>

@@ -7,8 +7,6 @@ namespace esdc_rules_api.AverageIncome
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
-        public FullPayPeriod(int ppNumber, decimal amount) : base(ppNumber, amount) {
-            
-        }
+        public FullPayPeriod(int ppNumber, decimal amount) : base(ppNumber, amount) {}
     }
 }

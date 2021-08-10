@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using esdc_rules_classes.AverageIncome;
 

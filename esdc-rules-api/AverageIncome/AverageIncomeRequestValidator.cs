@@ -5,13 +5,15 @@ using esdc_rules_api.Lib;
 using esdc_rules_classes.AverageIncome;
 using ppTypes = esdc_rules_api.AverageIncome.ValidPayPeriodTypes;
 
-
 namespace esdc_rules_api.AverageIncome
 {
     public class AverageIncomeRequestValidator : IValidateRequests<AverageIncomeRequest>
     {
         private readonly List<string> _validPayPeriodTypes = new List<string>() {
-            ppTypes.WEEKLY, ppTypes.BIWEEKLY, ppTypes.SEMIMONTHLY, ppTypes.MONTHLY
+            ppTypes.WEEKLY, 
+            ppTypes.BIWEEKLY, 
+            ppTypes.SEMIMONTHLY, 
+            ppTypes.MONTHLY
         };
 
         public void Validate(AverageIncomeRequest request) {

@@ -41,8 +41,6 @@ namespace esdc_rules_api.AverageIncome
             int year = endDate.Year;
             int dayNum = endDate.Day;
 
-            // TODO: Should this validate the endDate that comes in?
-
             // If end date is the 15th, then set it as the first day of the month
             if (dayNum == 15) {
                 startDate = new DateTime(year, monthNum, 1, 0, 0 ,0);

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.IO;
+using RestSharp;
 
 using esdc_rules_classes.MaternityBenefits;
 using esdc_rules_classes.AverageIncome;
@@ -19,7 +20,7 @@ using esdc_rules_api.MaternityBenefits;
 using esdc_rules_api.OpenFisca;
 using esdc_rules_api.BestWeeks;
 using esdc_rules_api.AverageIncome;
-using RestSharp;
+
 
 namespace esdc_rules_api
 {
@@ -53,7 +54,7 @@ namespace esdc_rules_api
                 c.IncludeXmlComments(xmlPath);
             });
 
-            InjectMaternityBenefits(services);
+            InjectOpenFisca(services);
 
             // Handlers
             services.AddScoped<IHandleRequests<AverageIncomeRequest, AverageIncomeResponse>, AverageIncomeRequestHandler>();
@@ -112,7 +113,7 @@ namespace esdc_rules_api
             });
         }
 
-        private void InjectMaternityBenefits(IServiceCollection services) {
+        private void InjectOpenFisca(IServiceCollection services) {
             // OpenFisca
             services.AddScoped<IOpenFisca, OpenFiscaLib>();
             services.AddScoped<IRestClient, RestSharp.RestClient>();
@@ -125,8 +126,6 @@ namespace esdc_rules_api
                 Url = openFiscaUrl
             };
             services.AddSingleton<IOptions<OpenFiscaOptions>>(x => Options.Create(openFiscaOptions));
-
         }
-
     }
 }

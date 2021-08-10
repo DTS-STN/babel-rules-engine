@@ -18,6 +18,5 @@ namespace esdc_rules_api.AverageIncome
 
             return startDate.AddDays(-dayOfWeek);
         }
-
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 using esdc_rules_classes.AverageIncome;
@@ -12,7 +11,8 @@ namespace esdc_rules_api.AverageIncome
                 
         public FullRoeCreator(
             IGetStartDateFromEndDate startDateGetter,
-            ICreateFullPayPeriods payPeriodCreator) {
+            ICreateFullPayPeriods payPeriodCreator) 
+        {
             _startDateGetter = startDateGetter;
             _payPeriodCreator = payPeriodCreator;
         }

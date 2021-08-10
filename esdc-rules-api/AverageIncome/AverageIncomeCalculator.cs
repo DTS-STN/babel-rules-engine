@@ -9,14 +9,13 @@ namespace esdc_rules_api.AverageIncome
 {
     public class AverageIncomeCalculator : ICalculateAverageIncome
     {
-
         private readonly ICreateFullRoes _fullRoeCreator;
         private readonly IGetIncomeList _incomeListGetter;
 
         public AverageIncomeCalculator(
             ICreateFullRoes fullRoeCreator,
-            IGetIncomeList incomeListGetter
-        ) {
+            IGetIncomeList incomeListGetter)
+        {
             _fullRoeCreator = fullRoeCreator;
             _incomeListGetter = incomeListGetter;
         }

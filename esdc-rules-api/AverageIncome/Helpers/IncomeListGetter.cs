@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 
-
 namespace esdc_rules_api.AverageIncome
 {
     public class IncomeListGetter : IGetIncomeList
@@ -12,7 +11,8 @@ namespace esdc_rules_api.AverageIncome
 
         public IncomeListGetter(
             IGetMainStartDate mainStartDateGetter,
-            IGetIncomeForOneWeek weeklyIncomeGetter) {
+            IGetIncomeForOneWeek weeklyIncomeGetter) 
+        {
             _mainStartDateGetter = mainStartDateGetter;
             _weeklyIncomeGetter = weeklyIncomeGetter;
         }

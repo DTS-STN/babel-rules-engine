@@ -1,5 +1,3 @@
-
-
 namespace esdc_rules_api.AverageIncome
 {
     public static class ValidPayPeriodTypes
@@ -8,6 +6,5 @@ namespace esdc_rules_api.AverageIncome
         public static readonly string MONTHLY = "monthly";
         public static readonly string WEEKLY = "weekly";
         public static readonly string BIWEEKLY = "bi-weekly";
-
     }
 }

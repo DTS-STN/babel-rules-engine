@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 using esdc_rules_api.Lib;
 using esdc_rules_api.MaternityBenefits;
@@ -15,14 +13,16 @@ namespace esdc_rules_api.Controllers
     {
         private readonly IHandleRequests<MaternityBenefitsRequest, MaternityBenefitsResponse> _requestHandler;
         private readonly IHandleBulkRequests _bulkRequestHandler;
+        private readonly ILogger<MaternityBenefitsController> _logger;
 
         public MaternityBenefitsController(
             IHandleRequests<MaternityBenefitsRequest, MaternityBenefitsResponse> requestHandler,
-            IHandleBulkRequests bulkRequestHandler
-            )
+            IHandleBulkRequests bulkRequestHandler,
+            ILogger<MaternityBenefitsController> logger)
         {
             _requestHandler = requestHandler;
             _bulkRequestHandler = bulkRequestHandler;
+            _logger = logger;
         }
 
         /// <summary>
@@ -37,6 +37,7 @@ namespace esdc_rules_api.Controllers
                 var result = _requestHandler.Handle(request);
                 return Ok(result);
             } catch (ValidationException ex) {
+                _logger.LogError(ex, ex.Message);
                 return BadRequest(new { error = ex.Message});
             }
         }
@@ -49,9 +50,11 @@ namespace esdc_rules_api.Controllers
         [HttpPost("Bulk")]
         public ActionResult<MaternityBenefitsBulkResponse> CalculateBulk(MaternityBenefitsBulkRequest request) {
             try {
+                _logger.LogInformation("Bulk Request with Size {0}", request.Persons.Count);
                 var result = _bulkRequestHandler.Handle(request);
                 return Ok(result);
             } catch (ValidationException ex) {
+                _logger.LogError(ex, ex.Message);
                 return BadRequest(new { error = ex.Message});
             }
         }

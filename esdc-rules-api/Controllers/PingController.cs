@@ -8,6 +8,12 @@ namespace esdc_rules_api.Controllers
     [Route("[controller]")]
     public class PingController : ControllerBase
     {
+        private readonly ILogger<PingController> _logger;
+
+        public PingController(ILogger<PingController> logger) {
+            _logger = logger;
+        }
+
         /// <summary>
         /// Ping
         /// </summary>
@@ -15,6 +21,7 @@ namespace esdc_rules_api.Controllers
         [HttpGet]
         public string Index()
         {
+            _logger.LogInformation("Ping!");
             return $"Welcome to the EI Rules API: {DateTime.Now}";
         }
     }
