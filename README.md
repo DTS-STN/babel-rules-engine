@@ -110,7 +110,7 @@ The Rules engine is currently deployed to Azure as an App Service. Deployments a
 
 ### Division of rules into separate APIs
 
-While we advocate for a large-scale Rules-as-Code system, it may not make sense to put a variety of different rules into one single project. This could cause too much overhead when trying to make changes to the rules, and a lot of the rules may not have anything to do with eachother.
+While we advocate for a large-scale Rules-as-Code system, it may not make sense to put a variety of different rules into one single project. This could cause too much overhead when trying to make changes to the rules, and a lot of the rules may not have anything to do with each other.
 
 This brings up the difficult question of deciding *how* exactly to split up the code-bases for different RaC APIs. One possibility is to align it with the government documents themselves, which could promote these APIs as a "coded version" of the written rules. In this case, the API would encode precisely the target rule document (policy/regulation/legslation) - nothing more, nothing less. It may be the case that a general approach to this problem could be defined, and then adapting the approach as needed, due to the variety of government rules.
 
@@ -125,3 +125,7 @@ If we can put all of these rule services behind an API gateway, then they could 
 This microservices approach combines the decoupled approach with a consistent experience for applications that would consume multiple rules. In fact, it may be possible to use the same pattern used by the justice.gc.ca website for organizing the endpoints of the various rules. 
 
 The Rules Engine is currently sitting behind an APIM Gateway, which is also managed in Microsoft Azure. The gateway is exposed as an API, and is configured to route requests related to maternity benefits through to this Rules Engine. Consuming applications can call either the API Gateway or this API directly to make use of the functionality. 
+
+### OpenFisca
+
+We experimented with an implementation of the Maternity Benefits calculation in [OpenFisca](https://openfisca.org/en/), a framework for formally encoding certain types of government rules, especially those related to benefits. There are many possibilities for integration with OpenFisca, such as using it behind the scenes to run calculations that fit the OpenFisca model. There is an implementation for the maternity benefits calculation encoded in this engine, but it requires the separate OpenFisca project to be up and running, and exposed as an API. The rules engine would connect to the OpenFisca API when it needs to calculate an individual's entitlement. The OpenFisca implementation is currently disabled, but it can easily be re-activated via dependency injection to experiment further with the technology.
